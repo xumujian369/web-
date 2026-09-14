@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>步骤2 · 数据与 v-for 列表渲染 - 水果选项卡</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23409eff'/%3E%3Ctext x='12' y='17' font-size='13' text-anchor='middle' fill='%23fff' font-family='Arial'%3E2%3C/text%3E%3C/svg%3E">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      background: #f0f2f5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px 16px 40px;
+    }
+    .page {
+      width: 520px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+    .page-header {
+      padding: 20px 24px 14px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .page-header h1 { font-size: 20px; color: #303133; font-weight: 600; }
+    .page-header p { font-size: 13px; color: #909399; margin-top: 6px; }
+    .tab { padding: 20px 24px 24px; }
+    .tab ul {
+      display: flex;
+      list-style: none;
+      border-bottom: 2px solid #e4e7ed;
+    }
+    .tab li {
+      padding: 10px 28px;
+      cursor: pointer;
+      font-size: 15px;
+      color: #606266;
+      border-radius: 6px 6px 0 0;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .tab li:hover { color: #409eff; }
+    .tab li.active { color: #fff; background: #409eff; }
+    .tab div { display: none; padding: 20px; text-align: center; }
+    .tab div.current { display: block; }
+    .tab img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="page-header">
+      <h1>水果选项卡</h1>
+      <p>步骤 2：数据与 v-for 列表渲染 —— 由 list 数组渲染标签和图片</p>
+    </div>
+
+    <!-- ===== 视图：v-for 渲染 ===== -->
+    <div id="app">
+      <div class="tab">
+        <ul>
+          <li :key="item.id" v-for="(item, index) in list">{{ item.title }}</li>
+        </ul>
+        <div :key="item.id" v-for="(item, index) in list">
+          <img :src="item.path">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/vue.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        list: [
+          { id: 1, title: 'apple',  path: 'img/apple.jpg' },
+          { id: 2, title: 'orange', path: 'img/orange.jpg' },
+          { id: 3, title: 'lemon',  path: 'img/lemon.jpg' }
+        ]
+      }
+    })
+  </script>
+</body>
+</html>
